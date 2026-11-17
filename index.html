@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kitten Play">
+  <meta name="theme-color" content="#7b4dff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Kitten Play</title>
+</head>
+<body>
+  <main id="menu">
+    <h1>Kitten Play</h1>
+
+    <div class="tiles">
+      <button class="tile t-fish" data-mode="fish"><canvas class="icon" data-icon="fish"></canvas><span>Fish</span></button>
+      <button class="tile t-mice" data-mode="mice"><canvas class="icon" data-icon="mouse"></canvas><span>Mice</span></button>
+      <button class="tile t-ladybugs" data-mode="ladybugs"><canvas class="icon" data-icon="ladybug"></canvas><span>Ladybugs</span></button>
+      <button class="tile t-butterflies" data-mode="butterflies"><canvas class="icon" data-icon="butterfly"></canvas><span>Butterflies</span></button>
+      <button class="tile t-laser" data-mode="laser"><canvas class="icon" data-icon="laser"></canvas><span>Laser Dot</span></button>
+      <button class="tile t-mix" data-mode="mix"><canvas class="icon" data-icon="mix"></canvas><span>Mix</span></button>
+    </div>
+
+    <section class="settings">
+      <div class="group">
+        <span class="label">Speed</span>
+        <div class="seg" id="speed">
+          <button data-v="slow">Slow</button>
+          <button data-v="normal">Normal</button>
+          <button data-v="fast">Fast</button>
+        </div>
+      </div>
+      <div class="group">
+        <span class="label">How many</span>
+        <div class="stepper">
+          <button id="minus" aria-label="Fewer">&minus;</button>
+          <span id="count">3</span>
+          <button id="plus" aria-label="More">+</button>
+        </div>
+      </div>
+      <div class="group">
+        <span class="label">Sound</span>
+        <button id="sound" class="toggle">On</button>
+      </div>
+    </section>
+
+    <p class="hint">To leave a game, hold your finger on the top-left corner for 3 seconds.</p>
+  </main>
+
+  <canvas id="game" hidden></canvas>
+
+  <script src="game.js"></script>
+</body>
+</html>
