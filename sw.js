@@ -1,6 +1,6 @@
 // Offline support. Serves the cached copy first, then refreshes the cache
 // in the background so the next launch picks up any update.
-const CACHE = 'kitten-play-v1';
+const CACHE = 'kitten-play-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,12 @@ const ASSETS = [
   './icons/icon-180.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
+  './bg/water.jpg',
+  './bg/wood.jpg',
+  './bg/leaves.jpg',
+  './bg/meadow.jpg',
+  './bg/rug.jpg',
+  './bg/playmat.jpg',
 ];
 
 self.addEventListener('install', (event) => {

@@ -64,7 +64,7 @@
   const TYPES = {
     fish: {
       size: 165, speed: 150, turn: 0.9, sound: 'bubble',
-      colors: [['#ffe000', '#ff8a00'], ['#b6ff00', '#00a86b'], ['#ff8a00', '#ffe000'], ['#ffffff', '#ff4fd8'], ['#ff4fd8', '#ffe000']],
+      colors: [['#ffe000', '#ff8a00'], ['#b6ff00', '#00a86b'], ['#ff8a00', '#ffe000'], ['#1f4dff', '#ffe000'], ['#ff4fd8', '#ffe000']],
       draw: drawFish, behave: behaveFish,
     },
     mouse: {
@@ -89,14 +89,31 @@
     },
   };
 
+  // Each scene has a painted background image. The code-drawn background is
+  // the fallback if the image has not loaded.
   const SCENES = {
-    fish: { types: ['fish'], bg: drawWaterBg, overlay: drawWaterOverlay, ambient: 'bubbles' },
-    mice: { types: ['mouse'], bg: drawWoodBg, ambient: 'squeaks' },
-    ladybugs: { types: ['ladybug'], bg: drawLeafBg },
-    butterflies: { types: ['butterfly'], bg: drawMeadowBg },
-    laser: { types: ['laser'], bg: drawRugBg, maxCount: 2 },
-    mix: { types: ['fish', 'mouse', 'ladybug', 'butterfly'], bg: drawPlaymatBg },
+    fish: { types: ['fish'], img: 'bg/water.jpg', bg: drawWaterBg, overlay: drawWaterOverlay, ambient: 'bubbles' },
+    mice: { types: ['mouse'], img: 'bg/wood.jpg', bg: drawWoodBg, ambient: 'squeaks' },
+    ladybugs: { types: ['ladybug'], img: 'bg/leaves.jpg', bg: drawLeafBg },
+    butterflies: { types: ['butterfly'], img: 'bg/meadow.jpg', bg: drawMeadowBg },
+    laser: { types: ['laser'], img: 'bg/rug.jpg', bg: drawRugBg, maxCount: 2 },
+    mix: { types: ['fish', 'mouse', 'ladybug', 'butterfly'], img: 'bg/playmat.jpg', bg: drawPlaymatBg },
   };
+
+  const bgImages = {};
+  for (const key of Object.keys(SCENES)) {
+    const im = new Image();
+    im.onload = () => { if (sceneKey === key) bgCanvas = null; };
+    im.src = SCENES[key].img;
+    bgImages[key] = im;
+  }
+
+  // Scale the image to cover the screen in either orientation.
+  function drawCover(g, im, w, h) {
+    const s = Math.max(w / im.naturalWidth, h / im.naturalHeight);
+    const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+    g.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  }
 
   // ---------------------------------------------------------------------------
   // Game state
@@ -1006,7 +1023,13 @@
       bgCanvas.height = canvas.height;
       const g = bgCanvas.getContext('2d');
       g.scale(DPR, DPR);
-      scene.bg(g, W, H);
+      const im = bgImages[sceneKey];
+      if (im && im.complete && im.naturalWidth) {
+        drawCover(g, im, W, H);
+        vignette(g, W, H, 'rgba(0,0,0,0.18)');
+      } else {
+        scene.bg(g, W, H);
+      }
       bgFor = sceneKey;
     }
     return bgCanvas;

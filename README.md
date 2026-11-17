@@ -67,8 +67,9 @@ Then open `http://localhost:8000`. Any static file server works. There's no buil
 | `game.js` | Movement, drawing, catch effects, sound and settings |
 | `sw.js` | Offline cache |
 | `manifest.webmanifest`, `icons/` | Home Screen name and icon |
+| `bg/` | Background art for each mode |
 
-All the artwork is drawn in code and all the sounds are generated in code, so there are no image or audio files to license.
+The animals are drawn in code, so they can move and animate freely. The six backgrounds in `bg/` and the app icon were made with Higgsfield. If a background image fails to load, the game falls back to a background drawn in code. All sounds are generated in code, so there are no audio files.
 
 ## A note on screens
 
