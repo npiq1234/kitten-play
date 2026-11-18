@@ -1,6 +1,6 @@
 // Offline support. Serves the cached copy first, then refreshes the cache
 // in the background so the next launch picks up any update.
-const CACHE = 'kitten-play-v2';
+const CACHE = 'kitten-play-v3';
 const ASSETS = [
   './',
   './index.html',

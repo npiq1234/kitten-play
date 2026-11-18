@@ -71,6 +71,22 @@ Then open `http://localhost:8000`. Any static file server works. There's no buil
 
 The animals are drawn in code, so they can move and animate freely. The six backgrounds in `bg/` and the app icon were made with Higgsfield. If a background image fails to load, the game falls back to a background drawn in code. All sounds are generated in code, so there are no audio files.
 
+## Privacy
+
+There are no accounts, tracking, analytics or ads, and no data leaves the device. The only thing stored is your speed, count and sound settings, kept in the browser on that device.
+
+## Security
+
+To report a security problem, see [SECURITY.md](SECURITY.md). Please don't open a public issue for it.
+
+## Contributing
+
+Issues are welcome. Pull requests aren't accepted. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+The code is released under the [MIT License](LICENSE). The background images and app icon were generated with Higgsfield. Their use is governed by Higgsfield's terms, and they may not be protected by copyright.
+
 ## A note on screens
 
 Kitten claws scratch glass. A matte screen protector is worth it.
